@@ -4,6 +4,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use PhpOption\None;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +41,7 @@ Route::get('/setup', function(){
 
             $adminToken = $user->createToken('admin-token', ['create', 'update', 'delete']);
             $userToken = $user->createToken('user-token', ['create', 'update']);
-            $basicToken = $user->createToken('basic-token');
+            $basicToken = $user->createToken('basic-token', ['none']);
 
             return [
                 'admin' => $adminToken->plainTextToken,
